@@ -1,0 +1,386 @@
+@import url(./indexqueries.css);
+
+$primaryLetterColor : rgb(255, 255, 255);
+$secondaryLetterColor : rgb(0, 0, 0);
+$primaryFontFamily : "Verdana, Geneva, Tahoma, sans-serif";
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+body{
+    font-size: 16px;
+    background-color: #000;
+}
+
+//Preference text to entire landing page.
+@mixin TextEdit ($color , $fontSize , $textFamily , $fontWeight){
+    color: $color;
+    font-size: $fontSize;
+    font-family: $textFamily;
+    font-weight: $fontWeight;
+}
+//NavBar Panel less than 1080px viewport
+.headercontent {
+    padding: 0;
+}
+.navbarpanel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000;
+    z-index: 1;
+}
+.ulcontent {
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+.listitems {
+    position: relative;
+    padding: 2.5em;
+    text-align: center;
+    :hover{
+        background-color: white;
+        color: black;
+    }
+}
+//Submenu Panel less than 1080px viewport;
+.contactitem {
+    width: 100%;
+    text-align: center;
+ }
+.submenucontainer {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+.submenulist {
+    text-align: center;
+    padding: 0.2em;
+}
+
+
+
+
+//
+
+.globalcontainer {
+    width: 100%;
+}
+
+.backgroundcontainer {
+    width: 100%;
+    background-image: url(./../../../assets/background.webp);
+    background-size: cover;
+}
+.headercontainer{
+    position: relative;
+    width: 100%;
+    &__header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__barsbutton {
+        border: none;
+        background-color: transparent;
+    }
+    &__barsicon {
+        font-size: 2em;
+        color: #fff;
+    }
+    &__titlecontainer{
+        width: 10%;
+    }
+    &__titlelogo{
+        width: 100%;
+        object-fit: contain;
+    }
+    &__ul{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 7em;
+    }
+    &__list{
+        text-align: center;
+        position: relative;
+    }
+    &__subul {
+        display: none;
+        width: 100%;
+        position: absolute;
+        text-align: center;
+        background-color: #000;
+
+    }
+    &__list:hover &__subul {
+        display: block;
+
+    }
+    &__alink{
+        padding: 1em;
+        color: $primaryLetterColor;
+        font-size: 1.2em;
+        font-weight: bolder;
+        transition: 0.2s linear;
+        &:hover{
+            color: rgb(95, 80, 192);
+            background-color: rgb(255, 255, 255);
+        }
+    }
+    &__subalink {
+        display: block;
+        @include TextEdit( $primaryLetterColor , 1.2em , $primaryFontFamily , none );
+        padding: 1em;
+        transition: 0.4s linear;
+        &:hover{
+            background-color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+        }
+  
+    }
+    &__icons{
+        margin-left: 0.7em;
+    }
+    
+}
+
+
+.maincontainer{
+    margin-top: 1.5em;
+
+    &__maininfocontainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    &__titlecontainer{
+        margin-bottom: 3em;
+    }
+    &__title{
+        color : $primaryLetterColor;
+    }
+    &__detailscontainer{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &__descriptioncontainer{
+        width: 70%;
+    }
+    &__description{
+        color : $primaryLetterColor;
+        font-size: 1.3em;
+    }
+    &__iconcontainer{ 
+        height: 12em;
+    }
+    &__iconlogo{
+        height: 100%;
+        object-fit: contain;
+        animation: IconMovement linear 1.5s alternate-reverse infinite;
+    }
+}
+
+.secondblockcontainer {
+    &__generalblock{
+        width: 60%;
+        margin: 0 auto;
+    }
+    &__titleblockcontainer {
+        text-align: center;
+        padding: 1em;
+    }
+    &__titleblock {
+        font-size: 1.4em;
+        color: $primaryLetterColor;
+        @include TextEdit( $primaryLetterColor , 1.5em , $primaryFontFamily , bolder );
+
+    }
+    &__cardscontainer{
+        width: 60%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(4 , 1fr);
+        grid-template-rows: 1fr 1fr;
+        gap: 1em;
+        animation: CardScale linear 3s infinite alternate;
+    }
+    &__flipcontainer{
+        background-color: transparent;
+        height: 170px;
+        perspective: 1000px;
+        &:hover{
+            transform: rotateY(180deg);
+        }
+    }
+    &__flipcontainerinner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+        &:hover{
+            transform: rotateY(180deg);
+        }
+    }
+    &__flipcontainerfront {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+    }
+    &__flipicon {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        
+    }
+    &__flipcontainerback{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        unicode-bidi: bidi-override;
+        direction: rtl;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        background-image: linear-gradient(white 30%, rgb(105, 98, 98));
+        background-color: rgb(188, 178, 178);
+        transform: rotateY(180deg);
+    }
+    &__flipbacktitle{
+        color: #000;
+        transform: rotateY(180deg);
+        font-size: 1em;
+        writing-mode: ltr;
+    }
+    &__flipbacktext{
+        padding: 0.4em;
+        color: #000;
+        transform: rotateY(180deg);
+        font-size: 0.8em;
+        writing-mode: ltr;
+    }
+}
+
+.thirdblockcontainer{
+    margin-top: 1.4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__title{
+        @include TextEdit( $primaryLetterColor, 1.3em , $primaryFontFamily , 700 );
+        margin-right: 1em
+    }
+    &__skillscontainer {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2em;
+        color: $primaryLetterColor;
+    }
+    &__skillitem {
+        @include TextEdit( $primaryLetterColor , 1.2em , $primaryFontFamily , 500 )
+    }
+    &__skillicon {
+        margin-left: 0.5em;
+    }
+}
+
+.fourthblockcontainer {
+    margin: 2.5em auto;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    &__declarationcontainer {
+        padding: 20px;
+        text-align: center;
+    }
+    &__declarationtext {
+        font-size: 1.2em;
+    }
+    &__targetcontainer {
+        text-align: center;
+        margin-top: 1.5em;
+        padding: 10px;
+    }
+    &__targetdef{
+        font-size: 1.3em;
+        margin-bottom: 1em;
+    }
+    &__targets {
+        font-size: 1.2em;
+    }
+}
+
+.footercontainer {
+    background-color: rgb(26, 25, 25);
+    &__footer {
+        display: flex;
+        flex-direction: column;
+    }
+    &__block1 {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    &__logofooter {
+        width: 100%;
+    }
+    &__msg {
+        @include TextEdit( $primaryLetterColor, 1.5em , $primaryFontFamily , bolder )
+    }
+    &__sncontainer {
+        display: flex;
+        align-items: center;
+    }
+    &__ulcontent {
+        display: flex;
+        align-items: center;
+    }
+    &__snicons {
+        margin-left: 1.5em;
+        width: 2.5em;
+        object-fit: contain;
+    }
+    &__block2 {
+        margin-top: 1em;
+        text-align: center;
+        @include TextEdit( $primaryLetterColor, 0.8em , $primaryFontFamily , 700 )
+    }
+}
+@keyframes CardScale {
+    10%{
+        transform: scale(1.010);
+    }
+    20%{
+        transform: none;
+    }
+    70%{
+        transform: none;
+    }
+    
+}
+
+
+@keyframes IconMovement {
+    50%{
+        transform: translateY(0.5em)
+    }
+    100%{
+        transform: translateY(-0.8em)
+    }
+
+}
